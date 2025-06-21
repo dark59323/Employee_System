@@ -109,7 +109,7 @@ COPY . /usr/share/nginx/html
 1. Clona el repositorio:
    ```bash
    git clone https://github.com/dark59323/Employee_System.git
-   cd proyecto-empleados
+   cd Employee_System
    ```
 
 2. Levanta el sistema con Docker:

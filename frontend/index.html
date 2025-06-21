@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html ng-app="empleadoApp">
+<head>
+  <meta charset="UTF-8">
+  <title>SPA Empleados</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.8.2/angular-route.min.js"></script>
+  <script src="app/app.module.js"></script>
+  <script src="app/app.routes.js"></script>
+  <script src="services/empleadoService.js"></script>
+  <script src="services/provinciaService.js"></script>
+  <script src="controllers/EmpleadoController.js"></script>
+  <script src="controllers/EmpleadoFormController.js"></script>
+  <script src="controllers/ReporteEmpleadoController.js"></script>
+</head>
+<body>
+  <div class="container mt-4">
+    <ng-view></ng-view>
+  </div>
+</body>
+</html>

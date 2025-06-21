@@ -1,0 +1,49 @@
+.tab-button {
+  border: none;
+  background: transparent;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-button.active {
+  border-bottom-color: #007bff;
+  color: #007bff;
+}
+
+.photo-preview {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid #ccc;
+  margin: 10px auto;
+}
+
+.is-invalid {
+  border-color: #dc3545;
+}
+
+.header {
+  background-color: #e0f0ff;
+  text-align: center;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  font-size: 13px;
+  vertical-align: middle !important;
+}
+
+th {
+  cursor: pointer;
+  user-select: none;
+}
+
+th span {
+  font-size: 12px;
+  margin-left: 4px;
+}

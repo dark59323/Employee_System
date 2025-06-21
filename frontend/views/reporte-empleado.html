@@ -1,0 +1,93 @@
+<div class="container-fluid" ng-controller="ReporteEmpleadoController">
+  <div class="header">
+    <h5>Módulo de Empleados</h5>
+    <h4 class="text-primary font-weight-bold">REPORTE EMPLEADO</h4>
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered table-hover table-sm text-center">
+      <thead class="thead-light">
+        <tr>
+          <th ng-click="ordenarPor('nombres')">Nombre
+            <span ng-if="sortField === 'nombres'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('cedula')">Cédula
+            <span ng-if="sortField === 'cedula'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('codigo_empleado')">Código
+            <span ng-if="sortField === 'codigo_empleado'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('direccion')">Dirección
+            <span ng-if="sortField === 'direccion'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('telefono')">Teléfono
+            <span ng-if="sortField === 'telefono'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.division')">División
+            <span ng-if="sortField === 'datos_laborales.division'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.departamento')">Departamento
+            <span ng-if="sortField === 'datos_laborales.departamento'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.seccion')">Sección
+            <span ng-if="sortField === 'datos_laborales.seccion'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.cargo')">Cargo
+            <span ng-if="sortField === 'datos_laborales.cargo'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.fecha_ingreso')">Fec. Ingreso
+            <span ng-if="sortField === 'datos_laborales.fecha_ingreso'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.status')">Status
+            <span ng-if="sortField === 'datos_laborales.status'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('datos_laborales.sueldo')">Sueldo
+            <span ng-if="sortField === 'datos_laborales.sueldo'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('con_discapacidad')">Con Discapacidad
+            <span ng-if="sortField === 'con_discapacidad'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('email')">Email
+            <span ng-if="sortField === 'email'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('categoria')">Categoría
+            <span ng-if="sortField === 'categoria'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('estado_civil')">Estado Civil
+            <span ng-if="sortField === 'estado_civil'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('tipo_sangre')">Tipo Sangre
+            <span ng-if="sortField === 'tipo_sangre'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+          <th ng-click="ordenarPor('provincia.nombre_provincia')">Provincia
+            <span ng-if="sortField === 'provincia.nombre_provincia'">{{ reverse ? '↓' : '↑' }}</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="emp in empleados | orderBy:sortField:reverse">
+          <td>{{ emp.nombres }} {{ emp.apellidos }}</td>
+          <td>{{ emp.cedula }}</td>
+          <td>{{ emp.codigo_empleado }}</td>
+          <td>{{ emp.direccion }}</td>
+          <td>{{ emp.telefono }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.division }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.departamento }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.seccion }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.cargo }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.fecha_ingreso }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.status }}</td>
+          <td>{{ emp.datos_laborales && emp.datos_laborales.sueldo }}</td>
+          <td>{{ emp.con_discapacidad }}</td>
+          <td>{{ emp.email }}</td>
+          <td>{{ emp.categoria }}</td>
+          <td>{{ emp.estado_civil }}</td>
+          <td>{{ emp.tipo_sangre }}</td>
+          <td>{{ emp.provincia && emp.provincia.nombre_provincia }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="text-center my-4">
+    <button class="btn btn-danger" onclick="window.location.href='#!/'">Salir</button>
+  </div>
+</div>

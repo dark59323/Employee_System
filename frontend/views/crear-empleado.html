@@ -1,0 +1,196 @@
+<div class="container mt-4">
+  <h4 class="text-center border p-2">Módulo de Empleados</h4>
+  <div class="text-center mb-3">
+    <button class="tab-button" ng-class="{ active: tab === 'personales' }" ng-click="tab = 'personales'">Datos
+      Personales</button>
+    <button class="tab-button" ng-class="{ active: tab === 'laborales' }" ng-click="tab = 'laborales'">Datos
+      Laborales</button>
+  </div>
+  <form name="empleadoForm" ng-submit="guardarEmpleado()" novalidate>
+    <div ng-show="tab === 'personales'">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Nombres</label>
+          <input type="text" class="form-control" ng-model="empleado.nombres" required>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Apellidos</label>
+          <input type="text" class="form-control" ng-model="empleado.apellidos" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Cédula</label>
+          <input type="text" name="cedula" class="form-control" ng-model="empleado.cedula" ng-pattern="/^\d{10}$/"
+            required>
+          <small class="text-danger" ng-show="empleadoForm.cedula.$dirty && empleadoForm.cedula.$error.pattern">
+            La cédula debe tener exactamente 10 números.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Código Empleado</label>
+          <input type="text" class="form-control" ng-model="empleado.codigo_empleado">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Dirección</label>
+        <textarea class="form-control" rows="2" ng-model="empleado.direccion"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Teléfono</label>
+          <input type="text" name="telefono" class="form-control" ng-model="empleado.telefono" ng-pattern="/^\d{10}$/"
+            required>
+          <small class="text-danger" ng-show="empleadoForm.telefono.$dirty && empleadoForm.telefono.$error.pattern">
+            El teléfono debe tener exactamente 10 números.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Email</label>
+          <input type="email" name="email" class="form-control" ng-model="empleado.email" required>
+          <small class="text-danger" ng-show="empleadoForm.email.$dirty && empleadoForm.email.$error.email">
+            Ingrese un correo válido.
+          </small>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Estado Civil</label>
+          <select class="form-control" ng-model="empleado.estado_civil">
+            <option>SOLTERO</option>
+            <option>CASADO</option>
+            <option>DIVORCIADO</option>
+            <option>VIUDO</option>
+            <option>UNIÓN LIBRE</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Tipo de Sangre</label>
+          <select class="form-control" ng-model="empleado.tipo_sangre">
+            <option>A+</option>
+            <option>A-</option>
+            <option>O+</option>
+            <option>O-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>¿Tiene Discapacidad?</label>
+          <select class="form-control" ng-model="empleado.con_discapacidad">
+            <option value="NO">No</option>
+            <option value="SI">Sí</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Categoría</label>
+          <select class="form-control" ng-model="empleado.categoria">
+            <option>Administrativo</option>
+            <option>Técnico</option>
+            <option>Operativo</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Provincia</label>
+          <select class="form-control" ng-model="empleado.provincia_id"
+            ng-options="prov.id as prov.nombre_provincia for prov in provincias">
+            <option value="">Seleccione una provincia...</option>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Estado Aprobación</label>
+          <select class="form-control" ng-model="empleado.estado_aprobacion">
+            <option value="pendiente">Pendiente</option>
+            <option value="aprobado">Aprobado</option>
+            <option value="rechazado">Rechazado</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group text-center">
+        <label>Fotografía:</label>
+        <div class="photo-preview mx-auto mb-2" ng-style="{ 'background-image': 'url(' + previewFoto + ')' }"></div>
+        <input type="file" class="d-none" id="fotoInput" accept="image/*"
+          onchange="angular.element(this).scope().cargarImagen(this)">
+        <button type="button" class="btn btn-primary btn-sm"
+          onclick="document.getElementById('fotoInput').click()">Cargar Imagen</button>
+      </div>
+    </div>
+    <div ng-show="tab === 'laborales'">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>División</label>
+          <input type="text" class="form-control" ng-model="datosLaborales.division">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Departamento</label>
+          <select class="form-control" ng-model="datosLaborales.departamento">
+            <option>Recursos Humanos</option>
+            <option>Sistemas</option>
+            <option>Producción</option>
+            <option>Finanzas</option>
+            <option>Mantenimiento</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label>Sección</label>
+          <input type="text" class="form-control" ng-model="datosLaborales.seccion">
+        </div>
+        <div class="form-group col-md-6">
+          <label>Cargo</label>
+          <input type="text" class="form-control" ng-model="datosLaborales.cargo">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6"
+          ng-class="{ 'has-error': empleadoForm.fecha_ingreso.$dirty && (empleadoForm.fecha_ingreso.$error.required || fechaInvalida()) }">
+          <label>Fecha de Ingreso</label>
+          <input type="date" name="fecha_ingreso" class="form-control" ng-model="datosLaborales.fecha_ingreso" required
+            ng-class="{ 'is-invalid': empleadoForm.fecha_ingreso.$dirty && (empleadoForm.fecha_ingreso.$error.required || fechaInvalida()) }">
+          <small class="text-danger"
+            ng-show="empleadoForm.fecha_ingreso.$dirty && empleadoForm.fecha_ingreso.$error.required">
+            La fecha de ingreso es obligatoria.
+          </small>
+          <small class="text-danger"
+            ng-show="empleadoForm.fecha_ingreso.$dirty && !empleadoForm.fecha_ingreso.$error.required && fechaInvalida()">
+            La fecha de ingreso no puede ser mayor a la fecha actual.
+          </small>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Sueldo</label>
+          <input type="number" name="sueldo" class="form-control" ng-model="datosLaborales.sueldo" step="0.01" min="0"
+            required>
+          <small class="text-danger" ng-show="empleadoForm.sueldo.$dirty && empleadoForm.sueldo.$error.number">
+            El sueldo debe ser un número válido.
+          </small>
+          <small class="text-danger" ng-show="empleadoForm.sueldo.$dirty && empleadoForm.sueldo.$error.required">
+            El sueldo es obligatorio.
+          </small>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Estado</label>
+        <select class="form-control" ng-model="datosLaborales.status">
+          <option value="VIGENTE">VIGENTE</option>
+          <option value="RETIRADO">RETIRADO</option>
+        </select>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button type="button" class="btn btn-primary" ng-show="tab === 'personales'" ng-click="tab = 'laborales'">
+        Continuar
+      </button>
+      <button type="submit" class="btn btn-success" ng-show="tab === 'laborales'">
+        Guardar
+      </button>
+      <button type="button" class="btn btn-secondary" ng-click="cancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>

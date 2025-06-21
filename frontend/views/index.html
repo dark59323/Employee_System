@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h2 class="text-center mb-4">Módulo de Empleados</h2>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <label><strong class="text-warning">Nombre</strong></label>
+      <input type="text" class="form-control" placeholder="Buscar por nombre" ng-model="inputNombre">
+    </div>
+    <div class="col-md-6">
+      <label><strong class="text-warning">Código Empleado</strong></label>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Buscar por código" ng-model="inputCodigo">
+        <div class="input-group-append">
+          <button class="btn btn-info" ng-click="buscar()">Buscar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-hover text-center">
+    <thead class="thead-light">
+      <tr>
+        <th>Nombre</th>
+        <th>Código</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="empleado in empleados | filter:filtroBusqueda | limitTo:limite"
+        ng-click="seleccionarEmpleado(empleado)" ng-dblclick="editarEmpleado(empleado)"
+        ng-class="{ 'table-active': empleadoSeleccionado && empleadoSeleccionado.id === empleado.id }"
+        style="cursor: pointer;">
+        <td>{{ empleado.nombres }} {{ empleado.apellidos }}</td>
+        <td>{{ empleado.codigo_empleado }}</td>
+        <td>{{ empleado.datos_laborales.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="text-muted">Únicamente se están desplegando los primeros 20 registros, si no encuentra la información
+    deseada por favor utilice los filtros de la parte superior.</p>
+
+  <div class="d-flex justify-content-center mt-3">
+    <a href="#!/crear-empleado" class="btn btn-success mx-2">Crear</a>
+    <button class="btn btn-primary mx-2" ng-click="editarEmpleado(empleadoSeleccionado)"
+      ng-disabled="!empleadoSeleccionado">Editar</button>
+    <a href="#!/reporte-empleado" class="btn btn-warning mx-2">Reporte</a>
+    <a href="#!/gracias" class="btn btn-danger mx-2">Salir</a>
+  </div>
+</div>
